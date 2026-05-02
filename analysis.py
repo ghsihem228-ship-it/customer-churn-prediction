@@ -39,3 +39,15 @@ y_pred = model.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("\nClassification Report:\n")
 print(classification_report(y_test, y_pred))
+import matplotlib.pyplot as plt
+
+# Churn distribution plot
+df["Churn"].value_counts().plot(kind="bar", title="Churn Distribution")
+plt.show()
+
+# Monthly charges distribution
+plt.hist(df["MonthlyCharges"], bins=30)
+plt.title("Monthly Charges Distribution")
+plt.xlabel("Monthly Charges")
+plt.ylabel("Count")
+plt.show()
