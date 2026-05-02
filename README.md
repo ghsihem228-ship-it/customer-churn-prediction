@@ -1,5 +1,7 @@
 # Customer Churn Prediction
+## 🚀 Live Demo
 
+👉 https://customer-churn-prediction-qedgqztxkezrcqk8e3cgfq.streamlit.app
 ## Overview
 Machine Learning project to predict customer churn using real-world telecom customer data.
 
