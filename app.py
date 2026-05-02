@@ -2,7 +2,6 @@ import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
@@ -34,21 +33,17 @@ ax2.set_xlabel("Monthly Charges")
 ax2.set_ylabel("Count")
 st.pyplot(fig2)
 
-encoded_df = df.copy()
-le = LabelEncoder()
+# Safe encoding
+encoded_df = pd.get_dummies(df, drop_first=True)
 
-for col in encoded_df.columns:
-    if encoded_df[col].dtype == "object":
-        encoded_df[col] = le.fit_transform(encoded_df[col])
-
-X = encoded_df.drop("Churn", axis=1)
-y = encoded_df["Churn"]
+X = encoded_df.drop("Churn_Yes", axis=1)
+y = encoded_df["Churn_Yes"]
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-model = LogisticRegression(max_iter=1000)
+model = LogisticRegression(max_iter=3000)
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
